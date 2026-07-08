@@ -7,8 +7,6 @@ class Producto(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    codigo = db.Column(db.String(20), unique=True, nullable=False)
-
     tipo_prenda = db.Column(db.String(50), nullable=False)
     
     material = db.Column(db.String(100), nullable=False)

@@ -4,8 +4,9 @@ from flask import request
 from flask import redirect
 from flask import url_for
 
-from models import db
 from models.producto import Producto
+
+from services.producto_service import registrar_producto
 
 productos_bp = Blueprint(
     "productos",
@@ -13,28 +14,25 @@ productos_bp = Blueprint(
     url_prefix="/productos"
 )
 
+
 @productos_bp.route("/")
 def listar():
 
-    productos = Producto.query.order_by(Producto.id.desc()).all()
+    productos = Producto.query.order_by(
+        Producto.id.desc()
+    ).all()
 
-    return render_template("productos.html", productos=productos)
+    return render_template(
+        "productos.html",
+        productos=productos
+    )
+
 
 @productos_bp.route("/nuevo", methods=["POST"])
 def nuevo():
 
-    producto = Producto(
-        codigo=request.form["codigo"],
-        material=request.form["material"],
-        manga=request.form["manga"],
-        talla=request.form["talla"],
-        precio_compra=request.form["precio_compra"],
-        precio_venta=request.form["precio_venta"],
-        stock=request.form["stock"]
+    registrar_producto(request.form)
+
+    return redirect(
+        url_for("productos.listar")
     )
-
-    db.session.add(producto)
-
-    db.session.commit()
-
-    return redirect(url_for("productos.listar"))
