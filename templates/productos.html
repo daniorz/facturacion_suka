@@ -48,19 +48,19 @@ Productos
 
             <td>{{ p.id }}</td>
 
-            <td>{{ p.tipo_prenda }}</td>
+            <td>{{ p.tipo_prenda.nombre }}</td>
 
-            <td>{{ p.material }}</td>
+            <td>{{ p.material.nombre }}</td>
 
-            <td>{{ p.manga }}</td>
+            <td>{{ p.manga.nombre }}</td>
 
-            <td>{{ p.talla }}</td>
+            <td>--</td>
 
             <td>S/. {{ p.precio_compra }}</td>
 
             <td>S/. {{ p.precio_venta }}</td>
 
-            <td>{{ p.stock }}</td>
+            <td>--</td>
 
             <td>
 
@@ -131,18 +131,15 @@ required>
 
 <option value="">Seleccione</option>
 
-<option>Polo</option>
-<option>Camisa</option>
-<option>Blusa</option>
-<option>Casaca</option>
-<option>Jean</option>
-<option>Pantalón</option>
-<option>Short</option>
-<option>Vestido</option>
-<option>Falda</option>
-<option>Chompa</option>
-<option>Buzo</option>
-<option>Conjunto</option>
+{% for tipo in tipos_prenda %}
+
+<option value="{{ tipo.id }}">
+
+    {{ tipo.nombre }}
+
+</option>
+
+{% endfor %}
 
 </select>
 
@@ -163,15 +160,15 @@ required>
 
 <option value="">Seleccione</option>
 
-<option>Algodón Pima</option>
-<option>Franela</option>
-<option>Jean</option>
-<option>Scuba</option>
-<option>Jacquard</option>
-<option>Licra</option>
-<option>Rib</option>
-<option>Rib Panameño</option>
-<option>Rib Americano</option>
+{% for material in materiales %}
+
+<option value="{{ material.id }}">
+
+    {{ material.nombre }}
+
+</option>
+
+{% endfor %}
 
 </select>
 
@@ -189,10 +186,17 @@ Manga
 class="form-select"
 name="manga">
 
-<option>Sin manga</option>
-<option>Manga corta</option>
-<option>Manga 3/4</option>
-<option>Manga larga</option>
+<option value="">Seleccione</option>
+
+{% for manga in mangas %}
+
+<option value="{{ manga.id }}">
+
+    {{ manga.nombre }}
+
+</option>
+
+{% endfor %}
 
 </select>
 
@@ -215,11 +219,17 @@ name="manga">
         name="talla"
         required>
 
-        <option>Niño(a)</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-        <option>XXL</option>
+        <option value="">Seleccione</option>
+
+        {% for talla in tallas %}
+
+        <option value="{{ talla.id }}">
+
+            {{ talla.nombre }}
+
+        </option>
+
+        {% endfor %}
 
     </select>
 

@@ -1,24 +1,21 @@
 from models import db
 from models.producto import Producto
+from models.inventario import Inventario
 
 
 def registrar_producto(datos):
 
     producto = Producto(
 
-        tipo_prenda=datos["tipo_prenda"],
+        tipo_prenda_id=datos["tipo_prenda"],
 
-        material=datos["material"],
+        material_id=datos["material"],
 
-        manga=datos["manga"],
-
-        talla=datos["talla"],
+        manga_id=datos["manga"],
 
         precio_compra=datos["precio_compra"],
 
-        precio_venta=datos["precio_venta"],
-
-        stock=datos["stock"]
+        precio_venta=datos["precio_venta"]
 
     )
 
