@@ -54,13 +54,33 @@ Productos
 
             <td>{{ p.manga.nombre }}</td>
 
-            <td>--</td>
+            <td>{% if p.inventarios %}
+
+                {{ p.inventarios[0].talla.nombre }}
+
+                {% else %}
+
+                --
+
+                {% endif %}
+
+            </td>
 
             <td>S/. {{ p.precio_compra }}</td>
 
             <td>S/. {{ p.precio_venta }}</td>
 
-            <td>--</td>
+            <td>{% if p.inventarios %}
+
+                {{ p.inventarios[0].stock }}
+
+                {% else %}
+
+                --
+
+                {% endif %}
+
+            </td>
 
             <td>
 

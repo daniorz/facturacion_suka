@@ -25,7 +25,7 @@ class Producto(db.Model):
     manga_id = db.Column(
         db.Integer,
         db.ForeignKey("mangas.id"),
-        nullable=False
+        nullable=True
     )
 
     precio_compra = db.Column(
@@ -61,4 +61,10 @@ class Producto(db.Model):
     manga = db.relationship(
         "Manga",
         backref="productos"
+    )
+
+    inventarios = db.relationship(
+        "Inventario",
+        backref="producto",
+        cascade="all, delete-orphan"
     )
